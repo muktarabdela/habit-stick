@@ -2,6 +2,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import AuthProvider from "@/components/AuthProvider";
 import ServiceWorker from '@/components/ServiceWorker';
+import InstallPrompt from '@/components/InstallPrompt';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,6 +24,7 @@ export default function RootLayout({ children }) {
       <body className={`${inter.className} bg-gray-50 min-h-screen`}>
         <AuthProvider>{children}</AuthProvider>
         <ServiceWorker />
+        <InstallPrompt />
       </body>
     </html>
   );
