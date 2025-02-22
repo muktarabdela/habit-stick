@@ -31,16 +31,7 @@ export default function Register() {
         }
 
         try {
-            // Check if email exists using auth API
-            const { data: { user }, error: authError } = await supabase.auth.admin.getUserById(email);
-            if (user) {
-                setError("You're already registered. Please login to your account.");
-                setLoading(false);
-                return;
-            }
-
-            // If the email is not registered, proceed with sign-up
-            const { error: signUpError } = await supabase.auth.signUp({
+            const { data, error: signUpError } = await supabase.auth.signUp({
                 email,
                 password,
                 options: {
@@ -49,10 +40,21 @@ export default function Register() {
                     },
                 },
             });
+            console.log(data)
+            if (signUpError) {
+                if (signUpError.message.includes('already registered')) {
+                    setError("You're already registered. Please login to your account.");
+                } else {
+                    throw signUpError;
+                }
+                return;
+            }
 
-            if (signUpError) throw signUpError;
-
-            setShowSuccessModal(true);
+            if (data.user && data.user.identities && data.user.identities.length === 0) {
+                setError("You're already registered. Please login to your account.");
+            } else {
+                setShowSuccessModal(true);
+            }
         } catch (error) {
             console.error('Error during registration:', error);
             setError(error.message || "An error occurred. Please try again.");
