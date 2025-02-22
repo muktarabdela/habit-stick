@@ -104,12 +104,11 @@ export default function HabitInsights({ habit, habitTracks }) {
             </h3>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-                <div className="bg-blue-50 rounded-lg p-4">
-                    <div className="text-sm text-blue-600 font-medium flex items-center">
-                        <HiSparkles className="mr-2" />
-                        Current Streak
+                <div className="bg-orange-300 hover:bg-orange-300 rounded-lg p-4">
+                    <div className="text-sm text-orange-800 font-medium flex items-center">
+                        🔥 Longest Streak
                     </div>
-                    <div className="text-2xl font-bold text-blue-700 mt-1">
+                    <div className="text-2xl font-bold text-orange-700 mt-1">
                         {stats.currentStreak} days
                     </div>
                 </div>
@@ -124,12 +123,11 @@ export default function HabitInsights({ habit, habitTracks }) {
                     </div>
                 </div>
 
-                <div className="bg-purple-50 rounded-lg p-4">
-                    <div className="text-sm text-purple-600 font-medium flex items-center">
-                        <HiCalendar className="mr-2" />
-                        Longest Streak
+                <div className="bg-orange-300 hover:bg-orange-300 rounded-lg p-4">
+                    <div className="text-sm text-orange-800 font-medium flex items-center">
+                        🔥 Longest Streak
                     </div>
-                    <div className="text-2xl font-bold text-purple-700 mt-1">
+                    <div className="text-2xl font-bold text-orange-700 mt-1">
                         {stats.longestStreak} days
                     </div>
                 </div>
