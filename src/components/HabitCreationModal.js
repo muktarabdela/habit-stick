@@ -102,7 +102,7 @@ export default function HabitCreationModal({ isOpen, onClose, onHabitAdded, habi
                                             id="name"
                                             value={name}
                                             onChange={(e) => setName(e.target.value)}
-                                            className="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
+                                            className="w-full px-4 py-2.5 rounded-lg border text-gray-700 border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
                                             placeholder="What habit would you like to track?"
                                             required
                                         />
@@ -116,7 +116,7 @@ export default function HabitCreationModal({ isOpen, onClose, onHabitAdded, habi
                                             id="description"
                                             value={description}
                                             onChange={(e) => setDescription(e.target.value)}
-                                            className="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
+                                            className="w-full px-4 py-2.5 rounded-lg border text-gray-700 border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
                                             placeholder="Add some details about your habit..."
                                             rows={3}
                                         />
