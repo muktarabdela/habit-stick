@@ -1,36 +1,101 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Habit Stick
 
-## Getting Started
+A simple and effective habit tracking application built with Next.js and Supabase. Track your daily habits with an intuitive calendar interface.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Create and manage habits
+- Track habit completion on a calendar
+- Simple and intuitive user interface
+- Real-time updates
+- Responsive design
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Tech Stack
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+- Next.js 14 with App Router
+- TypeScript
+- Tailwind CSS
+- Supabase (Backend and Database)
+- date-fns (Date manipulation)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Prerequisites
 
-## Learn More
+- Node.js 18.17 or later
+- npm or yarn
+- A Supabase account and project
 
-To learn more about Next.js, take a look at the following resources:
+## Setup
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Clone the repository:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+   ```bash
+   git clone <repository-url>
+   cd habit-tracker
+   ```
 
-## Deploy on Vercel
+2. Install dependencies:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+   ```bash
+   npm install
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+3. Create a Supabase project and set up the database:
+
+   Create the following tables in your Supabase database:
+
+   `habits` table:
+
+   ```sql
+   create table habits (
+     id uuid default uuid_generate_v4() primary key,
+     user_id uuid references auth.users(id),
+     name text not null,
+     description text,
+     created_at timestamp with time zone default timezone('utc'::text, now()) not null,
+     updated_at timestamp with time zone default timezone('utc'::text, now()) not null
+   );
+   ```
+
+   `habit_track` table:
+
+   ```sql
+   create table habit_track (
+     id uuid default uuid_generate_v4() primary key,
+     habit_id uuid references habits(id) on delete cascade,
+     date date not null,
+     completed boolean default false,
+     created_at timestamp with time zone default timezone('utc'::text, now()) not null,
+     updated_at timestamp with time zone default timezone('utc'::text, now()) not null
+   );
+   ```
+
+4. Copy `.env.local.example` to `.env.local` and update with your Supabase credentials:
+
+   ```bash
+   cp .env.local.example .env.local
+   ```
+
+   Then edit `.env.local` with your Supabase project URL and anon key.
+
+5. Run the development server:
+
+   ```bash
+   npm run dev
+   ```
+
+6. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+## Usage
+
+1. Add a new habit using the form at the top of the page
+2. Select a habit from the list to view its tracking calendar
+3. Click on any date in the calendar to toggle the habit's completion status for that day
+4. Use the calendar navigation to view different months
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
