@@ -31,14 +31,9 @@ export default function Register() {
         }
 
         try {
-            // Check if the email is already registered
-            const { data: existingUser, error: fetchError } = await supabase
-                .from('auth')
-                .select('email')
-                .eq('email', email)
-                .single();
-            console.log(existingUser)
-            if (existingUser) {
+            // Check if email exists using auth API
+            const { data: { user }, error: authError } = await supabase.auth.admin.getUserById(email);
+            if (user) {
                 setError("You're already registered. Please login to your account.");
                 setLoading(false);
                 return;
