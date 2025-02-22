@@ -104,7 +104,7 @@ export default function HabitInsights({ habit, habitTracks }) {
             </h3>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-                <div className="bg-orange-300 hover:bg-orange-300 rounded-lg p-4">
+                <div className="bg-orange-200 hover:bg-orange-200 rounded-lg p-4">
                     <div className="text-sm text-orange-800 font-medium flex items-center">
                         🔥 Longest Streak
                     </div>
@@ -123,7 +123,7 @@ export default function HabitInsights({ habit, habitTracks }) {
                     </div>
                 </div>
 
-                <div className="bg-orange-300 hover:bg-orange-300 rounded-lg p-4">
+                <div className="bg-orange-200 hover:bg-orange-200 rounded-lg p-4">
                     <div className="text-sm text-orange-800 font-medium flex items-center">
                         🔥 Longest Streak
                     </div>
